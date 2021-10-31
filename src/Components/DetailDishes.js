@@ -1,25 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, CardBody, CardImg, CardText, CardTitle } from "reactstrap";
 
 
-class DetailDish extends Component {
-  
 
-    renderDishes ()  {
+  
+    function RenderDishes ({dish})  {
         
             return(
                 <div className="col-12 col-md-6 col-lg-6">
                     <Card>
-                        <CardImg src={this.props.dish.image} alt={this.props.dish.name}/>
+                        <CardImg top src={dish.image} alt={dish.name}/>
                         <CardBody>
-                            <CardTitle>{this.props.dish.name}</CardTitle>
-                            <CardText>{this.props.dish.name}</CardText>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.name}</CardText>
                         </CardBody>
                     </Card>
                 </div>
             ) 
     }
-    renderComments(comments) {
+    function RenderComments({comments}) {
         if(comments) {
             const commentListItem = comments.map((comment) => {
                 return(
@@ -41,12 +40,13 @@ class DetailDish extends Component {
 
      
     }
-    render() {
-        if(this.props.dish) {
+
+    const DetailDish = (props) => {
+        if(props.dish) {
             return(
                 <>
-                    {this.renderDishes(this.props.dish)}
-                    {this.renderComments(this.props.dish.comments)}
+                    <RenderDishes dish={props.dish}/>
+                    <RenderComments comments ={props.dish.comments}/>
                 </>
             ) 
 
@@ -55,5 +55,5 @@ class DetailDish extends Component {
         } 
     }
 
-}
+
 export default DetailDish;
