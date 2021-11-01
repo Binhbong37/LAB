@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
+import { Breadcrumb, BreadcrumbItem, Button, FormGroup, Label, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import{ Control, LocalForm, Errors} from "react-redux-form"
 
+
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len)
+const minLength = (len) => (val) => (val) && (val.length >= len)
+const isNumber = (val) => !isNaN(Number(val))
+const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 class Contact extends Component {
     constructor(props){
         super(props)
@@ -64,7 +70,19 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.text model=".firstname" id="firstname" name="firstname"
                                     placeholder="First Name" 
-                                    className="form-control"/>
+                                    className="form-control"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(20)
+                                    }}
+                                    />
+                                    <Errors className="text-danger"
+                                    model=".firstname"
+                                    show="touched"
+                                    messages={{
+                                        required: "Yêu cầu nhập",
+                                        minLength: "Lớn hơn =3 ký tự",
+                                        maxLength: "Nhỏ hơn 20 ký tự"
+                                    }}/>
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -72,7 +90,18 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.text model=".lastname" id="lastname" className="form-control" name="lastname"
                                     placeholder="Last Name" 
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(20)
+                                    }}
                                     />
+                                    <Errors className="text-danger"
+                                    model=".lastname"
+                                    show="touched"
+                                    messages={{
+                                        required: "Yêu cầu nhập",
+                                        minLength: "Lớn hơn =3 ký tự",
+                                        maxLength: "Nhỏ hơn 20 ký tự"
+                                    }}/>
                                 </Col>
                                 
                             </Row>
@@ -81,7 +110,17 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.text model=".tel" id="tel" className="form-control" name="telnum"
                                     placeholder="Tel. Num"
+                                    validators={{
+                                        required, minLength: minLength(3), maxLength: maxLength(20), isNumber
+                                    }}
                                     />
+                                    <Errors className="text-danger"
+                                    model=".tel"
+                                    show="touched"
+                                    messages={{
+                                        required: "Yêu cầu nhập",
+                                        isNumber: "Chỉ điền số"
+                                    }}/>
                                 </Col>
                                 
                             </Row>
@@ -90,7 +129,18 @@ class Contact extends Component {
                                 <Col md={10}>
                                     <Control.text model=".email" id="email" className="form-control" name="email"
                                     placeholder="Your Email"
+                                    validators={{
+                                        required, validEmail
+                                    }}
                                     />
+                                    <Errors className="text-danger"
+                                    model=".email"
+                                    show="touched"
+                                    messages={{
+                                        required: "Yêu cầu nhập",
+                                        validEmail:"Email k hợp lệ",
+                                       
+                                    }}/>
                                 </Col>
                                 
                             </Row>
