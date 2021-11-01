@@ -1,4 +1,5 @@
 import React from "react";
+import CommentForm from "./Excesice3";
 import { Card, CardBody, CardImg, CardText, CardTitle, BreadcrumbItem, Breadcrumb } from "reactstrap";
 import { Link } from "react-router-dom"
 
@@ -34,6 +35,7 @@ import { Link } from "react-router-dom"
                     <ul className="list-unstyled">
                         {commentListItem}
                     </ul>
+                    <CommentForm/>
                 </div>
             )
         } else(<div></div>)
