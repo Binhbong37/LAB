@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Nav, NavItem, Button, Modal, Label, Row, Col, ModalHeader, ModalBody } from "reactstrap";
+import { Button, Modal, Label, Row, Col, ModalHeader, ModalBody } from "reactstrap";
 import{ Control, LocalForm, Errors} from "react-redux-form"
 
-
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len)
+const minLength = (len) => (val) => (val) && (val.length >= len)
 class CommentForm extends Component {
 
     constructor(props) {
@@ -39,7 +41,7 @@ class CommentForm extends Component {
                     <Row className="form-group">
                         <Col>
                             <Label htmlFor="rating">Rating</Label>
-                            <Control.select model=".rating" id="rating" className="form-control">
+                            <Control.select model=".rating" id="rating" className="form-control" defaultValue="1">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -53,7 +55,19 @@ class CommentForm extends Component {
                             <Label htmlFor='author'>Author</Label>
                             <Control.text model=".author" id="author" className="form-control"
                             placeholder="Your Name"
+                            required
+                            validators={{
+                                required, minLength:minLength(3), maxLength:maxLength(15)
+                            }}
                             />
+                            <Errors
+                            className="text-danger"
+                            model=".author"
+                            show="touched"
+                            messages={{
+                                minLength:"Lớn hơn = 3 ký tự",
+                                maxLength:"Nhỏ hơn 15 ký tự"
+                            }}/>
                         </Col>
                     </Row>
                     <Row className="form-group">
