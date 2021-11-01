@@ -29,9 +29,9 @@ class Main extends Component {
   
   render() {
     const HomePage = () => 
-      <Home dish={this.state.dishes.filter((dish) => dish.featured) [0]}
-      promotion={this.state.promotions.filter((promo) => promo.featured) [0]}
-      leader={this.state.leaders.filter((lead) => lead.featured) [0]}
+      <Home dish={this.state.dishes.filter((dish) => dish.featured)[0]}
+      promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+      leader={this.state.leaders.filter((lead) => lead.featured)[0]}
       />
     
     const DishWithId = ({match}) => {
