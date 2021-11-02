@@ -19,7 +19,7 @@ import { Link } from "react-router-dom"
                 </div>
             ) 
     }
-    function RenderComments({comments}) {
+    function RenderComments({comments, addComment, dishId}) {
         if(comments) {
             const commentListItem = comments.map((comment) => {
                 return(
@@ -35,7 +35,7 @@ import { Link } from "react-router-dom"
                     <ul className="list-unstyled">
                         {commentListItem}
                     </ul>
-                    <CommentForm/>
+                    <CommentForm dishId={dishId} addComment={addComment}/>
                 </div>
             )
         } else(<div></div>)
@@ -59,8 +59,9 @@ import { Link } from "react-router-dom"
                         </div>
                     </div>
                     <div className="row">
-                        <RenderDishes dish={props.dish}/>
-                        <RenderComments comments ={props.comments}/>
+                        <RenderDishes dish={props.dish} />
+                        <RenderComments comments ={props.comments} addComment={props.addComment} 
+                        dishId={props.dish.id}/>
                     </div>
                 </div>
             ) 
