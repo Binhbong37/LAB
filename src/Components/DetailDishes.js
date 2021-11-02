@@ -1,7 +1,9 @@
 import React from "react";
 import CommentForm from "./Excesice3";
 import { Card, CardBody, CardImg, CardText, CardTitle, BreadcrumbItem, Breadcrumb } from "reactstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { Loading } from "./isLoading"
+
 
 
   
@@ -44,7 +46,26 @@ import { Link } from "react-router-dom"
     }
 
     const DetailDish = (props) => {
-        if(props.dish) {
+        if(props.isLoading) {
+            return(
+                <div className="container">
+                    <div className="row">
+                        <Loading/>
+                    </div>
+                </div>
+
+            )
+        } else if(props.errMess) {
+            return(
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+
+            )
+        }
+        else if(props.dish) {
             return(
                 <div className="container">
                     <div className="row">
