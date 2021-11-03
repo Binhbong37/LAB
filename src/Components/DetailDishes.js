@@ -3,6 +3,8 @@ import CommentForm from "./Excesice3";
 import { Card, CardBody, CardImg, CardText, CardTitle, BreadcrumbItem, Breadcrumb } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Loading } from "./isLoading"
+import { baseUrl } from "../shared/baseUrlComponent"
+
 
 
 
@@ -12,7 +14,7 @@ import { Loading } from "./isLoading"
             return(
                 <div className="col-12 col-md-6 col-lg-6">
                     <Card>
-                        <CardImg top src={dish.image} alt={dish.name}/>
+                        <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
                         <CardBody>
                             <CardTitle>{dish.name}</CardTitle>
                             <CardText>{dish.name}</CardText>
