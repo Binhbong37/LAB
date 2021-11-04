@@ -3,7 +3,8 @@ import CommentForm from "./Excesice3";
 import { Card, CardBody, CardImg, CardText, CardTitle, BreadcrumbItem, Breadcrumb } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Loading } from "./isLoading"
-import { baseUrl } from "../shared/baseUrlComponent"
+import { baseUrl } from "../shared/baseUrlComponent";
+import { FadeTransform, Fade, Stagger } from "react-animation-components"
 
 
 
@@ -13,13 +14,17 @@ import { baseUrl } from "../shared/baseUrlComponent"
         
             return(
                 <div className="col-12 col-md-6 col-lg-6">
-                    <Card>
-                        <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.name}</CardText>
-                        </CardBody>
-                    </Card>
+                    <FadeTransform in transformProps={{
+                    exitTransform: "scale(0.5) translateY(-50%)"
+                        }}>
+                        <Card>
+                            <CardImg top src={baseUrl + dish.image} alt={dish.name}/>
+                            <CardBody>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.name}</CardText>
+                            </CardBody>
+                        </Card>
+                    </FadeTransform>
                 </div>
             ) 
     }
@@ -27,17 +32,21 @@ import { baseUrl } from "../shared/baseUrlComponent"
         if(comments) {
             const commentListItem = comments.map((comment) => {
                 return(
+                    <Fade in>
                     <li key={comment.id} >
                         <p>{comment.comment}</p>
                         <p>-- {comment.author}, {comment.date}</p>
                     </li>
+                    </Fade>
                 )
             });
             return (
                 <div className="col-12 col-md-6 col-lg-6">
                     <h3 style={{textAlign:"center"}}>COMMENTS</h3>
                     <ul className="list-unstyled">
+                        <Stagger in>
                         {commentListItem}
+                        </Stagger>
                     </ul>
                     <CommentForm dishId={dishId} postComment={postComment}/>
                 </div>
