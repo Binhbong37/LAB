@@ -14,7 +14,6 @@ export const Comments = (state = {
 
         case ActionTypes.ADD_COMMENT:
             var comment = action.payload
-            comment.id = state.comments.length
             comment.date = new Date().toISOString();
 
 
