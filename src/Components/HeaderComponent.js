@@ -42,7 +42,7 @@ class Header extends Component {
                 alt="Ris..."/>
             </NavbarBrand>
             <Collapse isOpen={this.state.isNavOpen} navbar>
-                <Nav Navbar>
+                <Nav navbar>
                     <NavItem>
                         <NavLink className="nav-link" to="/home">
                             <span className="fa fa-home fa-lg"></span> Home

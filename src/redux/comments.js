@@ -1,4 +1,3 @@
-import { COMMENTS } from "../shared/comments";
 import * as ActionTypes from "./actionTypes";
 
 export const Comments = (state = {
