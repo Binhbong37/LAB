@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 function RenderLeader({leader}) {
+    
     return(
         <Media tag="li">
             <Media left middle>
